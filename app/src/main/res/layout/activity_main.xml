@@ -22,7 +22,7 @@
             android:textColor="@color/white"
             android:layout_centerInParent="true"
             android:background="@color/transparent"
-            android:text="Select Video"
+            android:text="选择视频"
             android:id="@+id/cancel_button"/>
 
     </RelativeLayout>
@@ -59,13 +59,13 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             android:text="Raghav"/>
+
         <ImageView
-            android:layout_centerInParent="true"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
             android:id="@+id/overlayimage"
-            />
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY" />
     </RelativeLayout>
     <LinearLayout
 
@@ -75,48 +75,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <TextView
-                android:layout_alignParentStart="true"
-                android:id="@+id/textleft"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00:00"
-                android:textColor="@color/white"
-                android:layout_marginBottom="10dp"
-                />
-            <TextView
-                android:layout_alignParentEnd="true"
-                android:layout_weight="1"
-                android:textAlignment="textEnd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/textright"
-                android:text="00:00"
-                android:textColor="@color/white"
-                android:layout_marginBottom="10dp"
-                />
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:background="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <org.florescu.android.rangeseekbar.RangeSeekBar
 
-                app:alwaysActive="true"
-                android:id="@+id/rangeSeekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:showLabels="false"
-                app:activeColor="@color/white"
-                app:barHeight="2dp"
-                app:textAboveThumbsColor="#000000" />
 
-        </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="10dp"/>
@@ -162,7 +123,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Slow Motion"
+                            android:text="生成1小时视频"
                             android:textAlignment="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
@@ -184,7 +145,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Reverse"
+                            android:text="生成10小时视频"
                             android:textAlignment="center"
                             android:textColor="@color/white"/>
                     </LinearLayout>
@@ -207,7 +168,7 @@
                             android:textAlignment="center"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Flash"
+                            android:text="生成23小时视频"
                             android:textColor="@color/white"/>
                     </LinearLayout>
 
@@ -223,7 +184,7 @@
                     android:id="@+id/text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tap to add effects"
+                    android:text="请允许存储空间权限，生成的视频在/Movies/LongVideos文件夹。长视频需要大量存储空间，请留出至少12G存储空间"
                     android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
                     />
