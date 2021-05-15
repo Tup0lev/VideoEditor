@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("审核快乐App By图波列夫的设计图");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Toast.makeText(MainActivity.this, "请确保你已在应用信息中允许了存储空间权限，否则App不能正常使用！", Toast.LENGTH_SHORT).show();
 
         slow = (ImageButton) findViewById(R.id.slow);
         reverse = (ImageButton) findViewById(R.id.reverse);
