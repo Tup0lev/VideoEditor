@@ -205,9 +205,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    /**
-     * Method for creating fast motion video
-     */
     private void fastforward(int startMs, int endMs) throws Exception {
 
         progressDialog.show();
@@ -240,19 +237,21 @@ public class MainActivity extends AppCompatActivity {
             filePath = dest.getAbsolutePath();
             System.out.println(filePath);
         }
+        System.out.println("delete");
+        File file = new File("/storage/emulated/0/Movies/cache.mkv");
+        file.delete();
 
         String exe;
         String exe2;
 
         String vf;
-        vf = "scale=256:144 ";
-        exe=" -i " +video_url+" -crf 20 -preset ultrafast -pix_fmt yuv420p -crf 24 -vf scale=256:144" + "/storage/emulated/0/Movies/cache.mkv";
+        vf = "scale=640:360";
+        exe=" -i " +video_url+" -crf 20 -preset ultrafast -vf "+ vf + " /storage/emulated/0/Movies/cache.mkv";
 
-        exe2=" -stream_loop -1 -i " + "/storage/emulated/0/Movies/cache.mkv" +" -c copy -t 82800 "+filePath;
+        exe2=" -stream_loop -1 -i " + "/storage/emulated/0/Movies/cache.mkv" +" -c copy -t 82800 " + filePath;
 
 
-        File file = new File("/storage/emulated/0/Movies/cache.mkv");
-        file.delete();
+
 
         long executionId = FFmpeg.executeAsync(exe, new ExecuteCallback() {
 
@@ -270,10 +269,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sleep(10000);
+        System.out.println("asdfasdf");
 
-        System.out.println("asdf");
-        Toast.makeText(MainActivity.this, "asdfghjkl;'", Toast.LENGTH_SHORT).show();
+        sleep(10000);
 
         long executionId2 = FFmpeg.executeAsync(exe2, new ExecuteCallback() {
 
@@ -298,7 +296,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
+
     }
+
 
 
 
@@ -334,20 +336,21 @@ public class MainActivity extends AppCompatActivity {
             filePath = dest.getAbsolutePath();
             System.out.println(filePath);
         }
+        System.out.println("delete");
+        File file = new File("/storage/emulated/0/Movies/cache.mkv");
+        file.delete();
 
         String exe;
         String exe2;
 
         String vf;
-        vf = "scale=480:360";
+        vf = "scale=640:360";
         exe=" -i " +video_url+" -crf 20 -preset ultrafast -vf "+ vf + " /storage/emulated/0/Movies/cache.mkv";
 
+        exe2=" -stream_loop -1 -i " + "/storage/emulated/0/Movies/cache.mkv" +" -c copy -t 36000 " + filePath;
 
-        exe2=" -stream_loop -1 -i " + "/storage/emulated/0/Movies/cache.mkv" +" -c copy -t 35999 "+filePath;
 
 
-        File file = new File("/storage/emulated/0/Movies/cache.mkv");
-        file.delete();
 
         long executionId = FFmpeg.executeAsync(exe, new ExecuteCallback() {
 
@@ -365,6 +368,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        System.out.println("asdfasdf");
 
         sleep(10000);
 
@@ -396,10 +400,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /**
-      Method for creating slow motion video for specific part of the video
-      The below code is same as above only the command in string "exe" is changed.
-    */
+
     private void slowmotion(int startMs, int endMs) throws Exception {
 
         progressDialog.show();
