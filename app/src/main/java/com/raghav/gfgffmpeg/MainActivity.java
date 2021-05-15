@@ -2,10 +2,15 @@ package com.raghav.gfgffmpeg;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -25,6 +30,8 @@ import android.widget.VideoView;
 import com.arthenica.mobileffmpeg.Config;
 import com.arthenica.mobileffmpeg.ExecuteCallback;
 import com.arthenica.mobileffmpeg.FFmpeg;
+import com.tbruyelle.rxpermissions2.RxPermissions;
+
 import org.florescu.android.rangeseekbar.RangeSeekBar;
 import org.w3c.dom.ls.LSOutput;
 
@@ -35,6 +42,7 @@ import static java.lang.Thread.sleep;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int REQUEST_ID_MULTIPLE_PERMISSIONS= 7;
     private ImageButton reverse,slow,fast;
     private Button cancel;
 
@@ -44,11 +52,32 @@ public class MainActivity extends AppCompatActivity {
     private Runnable r;
 
     private static final String root= Environment.getExternalStorageDirectory().toString();
-    private static final String app_folder=root+"/TenHrGenerator/";
+    private static final String app_folder=root+"/Movies";
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("批哩批哩审核快乐App");
+
+
+//        RxPermissions rxPermissions = new RxPermissions(this);
+//        rxPermissions
+//                .request(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                // ask single or multiple permission once
+//                .subscribe(granted -> {
+//                    if (granted) {
+//                        // All requested permissions are granted
+//                    } else {
+//                        Toast.makeText(MainActivity.this, "请允许储存空间权限！！！", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+
+
+
+
+
+
+
+        setTitle("审核快乐App By图波列夫的设计图");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -189,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
             ContentValues valuesvideos = new ContentValues();
-            valuesvideos.put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/" + "LongVideos");
+            valuesvideos.put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/" );
             valuesvideos.put(MediaStore.Video.Media.TITLE, filePrefix+System.currentTimeMillis());
             valuesvideos.put(MediaStore.Video.Media.DISPLAY_NAME, filePrefix+System.currentTimeMillis()+fileExtn);
             valuesvideos.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4");
@@ -217,12 +246,12 @@ public class MainActivity extends AppCompatActivity {
 
         String vf;
         vf = "scale=256:144 ";
-        exe=" -i " +video_url+" -crf 20 -preset ultrafast -pix_fmt yuv420p -crf 24 -vf scale=256:144" + "/storage/emulated/0/Movies/LongVideos/cache.mkv";
+        exe=" -i " +video_url+" -crf 20 -preset ultrafast -pix_fmt yuv420p -crf 24 -vf scale=256:144" + "/storage/emulated/0/Movies/cache.mkv";
 
-        exe2=" -stream_loop -1 -i " + "/storage/emulated/0/Movies/LongVideos/cache.mkv" +" -c copy -t 82800 "+filePath;
+        exe2=" -stream_loop -1 -i " + "/storage/emulated/0/Movies/cache.mkv" +" -c copy -t 82800 "+filePath;
 
 
-        File file = new File("/storage/emulated/0/Movies/LongVideos/cache.mkv");
+        File file = new File("/storage/emulated/0/Movies/cache.mkv");
         file.delete();
 
         long executionId = FFmpeg.executeAsync(exe, new ExecuteCallback() {
@@ -257,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
                     videoView.start();
 
 
-                    File file = new File("/storage/emulated/0/Movies/LongVideos/cache.mkv");
+                    File file = new File("/storage/emulated/0/Movies/cache.mkv");
                     file.delete();
 
                     progressDialog.dismiss();
@@ -283,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
             ContentValues valuesvideos = new ContentValues();
-            valuesvideos.put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/" + "LongVideos");
+            valuesvideos.put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/" );
             valuesvideos.put(MediaStore.Video.Media.TITLE, filePrefix+System.currentTimeMillis());
             valuesvideos.put(MediaStore.Video.Media.DISPLAY_NAME, filePrefix+System.currentTimeMillis()+fileExtn);
             valuesvideos.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4");
@@ -311,12 +340,13 @@ public class MainActivity extends AppCompatActivity {
 
         String vf;
         vf = "scale=480:360";
-        exe=" -i " +video_url+" -crf 20 -preset ultrafast -vf "+ vf + " /storage/emulated/0/Movies/LongVideos/cache.mkv";
-
-        exe2=" -stream_loop -1 -i " + "/storage/emulated/0/Movies/LongVideos/cache.mkv" +" -c copy -t 35999 "+filePath;
+        exe=" -i " +video_url+" -crf 20 -preset ultrafast -vf "+ vf + " /storage/emulated/0/Movies/cache.mkv";
 
 
-        File file = new File("/storage/emulated/0/Movies/LongVideos/cache.mkv");
+        exe2=" -stream_loop -1 -i " + "/storage/emulated/0/Movies/cache.mkv" +" -c copy -t 35999 "+filePath;
+
+
+        File file = new File("/storage/emulated/0/Movies/cache.mkv");
         file.delete();
 
         long executionId = FFmpeg.executeAsync(exe, new ExecuteCallback() {
@@ -349,7 +379,7 @@ public class MainActivity extends AppCompatActivity {
                     videoView.start();
 
 
-                    File file = new File("/storage/emulated/0/Movies/LongVideos/cache.mkv");
+                    File file = new File("/storage/emulated/0/Movies/cache.mkv");
                     file.delete();
 
                     progressDialog.dismiss();
@@ -380,7 +410,7 @@ public class MainActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
 
             ContentValues valuesvideos = new ContentValues();
-            valuesvideos.put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/" + "LongVideos");
+            valuesvideos.put(MediaStore.Video.Media.RELATIVE_PATH, "Movies/" );
             valuesvideos.put(MediaStore.Video.Media.TITLE, filePrefix+System.currentTimeMillis());
             valuesvideos.put(MediaStore.Video.Media.DISPLAY_NAME, filePrefix+System.currentTimeMillis()+fileExtn);
             valuesvideos.put(MediaStore.Video.Media.MIME_TYPE, "video/mp4");
@@ -403,7 +433,7 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(filePath);
         }
         System.out.println("delete");
-        File file = new File("/storage/emulated/0/Movies/LongVideos/cache.mkv");
+        File file = new File("/storage/emulated/0/Movies/cache.mkv");
         file.delete();
 
         String exe;
@@ -411,9 +441,9 @@ public class MainActivity extends AppCompatActivity {
 
         String vf;
         vf = "scale=640:360";
-        exe=" -i " +video_url+" -crf 20 -preset ultrafast -vf "+ vf + " /storage/emulated/0/Movies/LongVideos/cache.mkv";
+        exe=" -i " +video_url+" -crf 20 -preset ultrafast -vf "+ vf + " /storage/emulated/0/Movies/cache.mkv";
 
-        exe2=" -stream_loop -1 -i " + "/storage/emulated/0/Movies/LongVideos/cache.mkv" +" -c copy -t 3600 " + filePath;
+        exe2=" -stream_loop -1 -i " + "/storage/emulated/0/Movies/cache.mkv" +" -c copy -t 3600 " + filePath;
 
 
 
@@ -449,7 +479,7 @@ public class MainActivity extends AppCompatActivity {
                     videoView.start();
 
 
-                    File file = new File("/storage/emulated/0/Movies/LongVideos/cache.mkv");
+                    File file = new File("/storage/emulated/0/Movies/cache.mkv");
                     file.delete();
 
                     progressDialog.dismiss();

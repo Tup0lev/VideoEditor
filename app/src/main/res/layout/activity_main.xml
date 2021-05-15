@@ -184,7 +184,7 @@
                     android:id="@+id/text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="请允许存储空间权限，生成的视频在/Movies/LongVideos文件夹。长视频需要大量存储空间，请留出至少12G存储空间"
+                    android:text="请允许存储空间权限，生成的视频在/Movies(影片)文件夹。长视频需要大量存储空间，请留出至少12G存储空间"
                     android:textColor="@color/white"
                     android:layout_marginBottom="10dp"
                     />
